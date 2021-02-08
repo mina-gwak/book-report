@@ -54,10 +54,17 @@ class UserChangeForm(forms.ModelForm):
 
 class LoginForm(forms.Form):
 
-  user_id = UsernameField(widget=forms.TextInput(attrs={'autofocus': True, 'placeholder': 'ID'}))
+  user_id = UsernameField(widget=forms.TextInput(attrs={
+    'autofocus': True, 
+    'placeholder': 'ID',
+    'class': 'user-id'}))
   password = forms.CharField(
       strip=False,
-      widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'placeholder': 'Password'})
+      widget=forms.PasswordInput(attrs={
+        'autocomplete': 'current-password', 
+        'placeholder': 'Password',
+        'class': 'user-password'
+        })
   )
 
   error_messages = {

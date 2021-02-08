@@ -89,7 +89,7 @@ input {
 }
 
 .form.login .check-label::after {
-  display: block;
+  display: none;
   top: 4px;
   left: 4px;
   content: '';
@@ -100,6 +100,10 @@ input {
   background-color: #61768B;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.form.login .check-label.active::after {
+  display: block;
 }
 
 .to-sign-up {

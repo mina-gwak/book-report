@@ -19,6 +19,3 @@ def register(request):
       'regi_form': filled_form,
       })
   return render(request, 'register.html', {'regi_form': regi_form})
-
-def main(request):
-  return render(request, 'main.html')

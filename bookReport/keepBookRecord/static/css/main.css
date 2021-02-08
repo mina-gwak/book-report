@@ -1,0 +1,78 @@
+/* Contents Header */
+
+.contents-header {
+  width: 100vw;
+  height: 300px;
+  background-color: #61768B;
+}
+
+.contents-header .contents-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.contents-header .contents-wrapper::before {
+  position: absolute;
+  content: '';
+  background-image: url('../images/bookmark.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100px;
+  width: 100px;
+  height: 100px;
+  right: 78px;
+  top: -5px;
+}
+
+.contents-header h1 {
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  font-size: 70px;
+  font-weight: 900;
+  margin-bottom: 70px;
+}
+
+.contents-header span {
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.contents-header p {
+  color: #fff;
+  font-size: 20px;
+}
+
+/* Contents Book */
+
+.contents-book {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: #F4F4F4;
+}
+
+.contents-book .contents-wrapper {
+  margin: 20px auto;
+}
+
+a.add-book-btn {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #B2C5D8;
+  padding: 15px;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+.add-book-btn span {
+  position: relative;
+  top: 1px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+}

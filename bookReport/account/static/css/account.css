@@ -160,10 +160,6 @@ input {
   color: #C03A2B;
 }
 
-@media (max-width: 1440px) {
-
-}
-
 @media (max-width: 1024px) {
   .login-container {
     width: 70vw;

@@ -1,5 +1,16 @@
-{{info.title}}
-{{info.author}}
-{{info.pubdate}}
-{{info.publisher}}
-{{info.image}}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Book Report - Add book{% endblock %}
+{% block link %}{% static 'css/add-book.css' %}{% endblock %}
+
+{% block content %}
+<div class="contents-wrapper">
+  {{info.title}}
+  {{info.author}}
+  {{info.pubdate}}
+  {{info.publisher}}
+  {{info.image}}
+</div>
+{% endblock %}

@@ -13,7 +13,7 @@ def search(request):
 
     book_name = request.POST.get('bookName')
     encText = urllib.parse.quote("{}".format(book_name))
-    url = "https://openapi.naver.com/v1/search/book.json?query=" + encText  # json 결과
+    url = "https://openapi.naver.com/v1/search/book.json?query=" + encText
 
     book_api_request = urllib.request.Request(url)
     book_api_request.add_header("X-Naver-Client-Id", client_id)

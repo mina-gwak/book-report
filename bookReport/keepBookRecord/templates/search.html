@@ -2,43 +2,44 @@
 
 {% load static %}
 
-{% block title %}Book Report - Add book{% endblock %}
-{% block link %}{% static 'css/addBook.css' %}{% endblock %}
+{% block title %}Book Report - Search book{% endblock %}
+{% block link %}{% static 'css/search.css' %}{% endblock %}
 
 {% block content %}
-<div class="contents-wrapper">
+<div class="contents-wrapper search">
   <div class="search-contents">
-    <form action="{% url 'search' %}" method="POST">
+    <form action="{% url 'search' %}" method="POST" class="search-form">
       {% csrf_token %}
       <input type="text" name="bookName" placeholder="Enter the book's name" />
-      <button type="submit">Search</button>
+      <button type="submit" class="search-btn">Search</button>
     </form>
+    <ul class="results">
+      {% for item in items %}
+      <li id="{{forloop.counter}}">
+        <p>{{ forloop.counter }}</p>
+        <img src="{{item.image}}" alt="{{title}}" width="120" /> 
+        <form action="{% url 'addBook' %}" method="POST" class="book-info">
+          {% csrf_token %}
+          <div>
+            <!-- <textarea name="title" id="title" cols="28" rows="2" readonly></textarea> -->
+            <input type="text" name="title" id="title" readonly />
+            <input type="text" name="author" readonly value="{{item.author}}" />
+            <input type="text" name="publisher" readonly value="{{item.publisher}}" />
+            <input type="text" name="pubdate" id="pubdate" readonly value="{{item.pubdate}}" />
+            <input type="text" name="image" readonly value="{{item.image}}" hidden />
+          </div>
+          <button type="submit">Select</button>
+        </form>
+      </li>
+      <script>
+        var title = '{{item.title|safe}}';
+        var newTitle = title.replace(/(<([^>]+)>)/ig,""); 
+        var count = '{{forloop.counter}}';
+        var li = document.getElementById(parseInt(count, 10));
+        li.querySelector('#title').value = newTitle;
+      </script>
+      {% endfor %}
+    </ul>
   </div>
-  <ul>
-    {% for item in items %}
-    <li id="{{forloop.counter}}">
-      <p>{{ forloop.counter }}</p>
-      <img src="{{item.image}}" alt="{{title}}" width="120" /> 
-      <form action="{% url 'addBook' %}" method="POST" class="book-info">
-        {% csrf_token %}
-        <input type="text" name="title" id="title" readonly />
-        <input type="text" name="pubdate" readonly value="{{item.pubdate}}" />
-        <input type="text" name="author" readonly value="{{item.author}}" />
-        <input type="text" name="publisher" readonly value="{{item.publisher}}" />
-        <input type="text" name="image" readonly value="{{item.image}}" hidden />
-        <button type="submit">Select</button>
-      </form>
-    </li>
-    <script>
-      var title = '{{item.title|safe}}';
-      var newTitle = title.replace(/(<([^>]+)>)/ig,""); 
-      var count = '{{forloop.counter}}';
-      console.log(newTitle);
-      var li = document.getElementById(parseInt(count, 10));
-      console.log(li);
-      li.querySelector('#title').value = newTitle;
-    </script>
-    {% endfor %}
-  </ul>
 </div>
 {% endblock %}

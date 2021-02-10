@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import ReadOnlyPasswordHashField, AuthenticationForm, UsernameField
+from django.contrib.auth.views import LoginView
 from django.core.exceptions import ValidationError
 
 
@@ -117,3 +118,6 @@ class LoginForm(forms.Form):
       code='invalid_login',
       params={'user_id': self.username_field.verbose_name},
     )
+
+class MyLoginView(LoginView):
+  template_name = 'login.html'

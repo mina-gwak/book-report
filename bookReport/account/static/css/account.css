@@ -67,6 +67,8 @@ input {
 }
 
 .form.login .check-label {
+  display: flex;
+  align-items: center;
   position: relative;
   width: fit-content;
   font-size: 12px;
@@ -83,7 +85,6 @@ input {
   border: 2px solid #61768B;
   content: ' ';
   border-radius: 10px;
-  float: left;
   margin-right: 10px;
   cursor: pointer;
 }

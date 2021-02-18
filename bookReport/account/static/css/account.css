@@ -75,7 +75,6 @@ input {
   color: #999999;
   font-weight: 400;
   margin: 10px 0 20px;
-  text-align: left;
   cursor: pointer;
 }
 
@@ -90,12 +89,12 @@ input {
 }
 
 .form.login .check-label::after {
-  display: none;
+  position: absolute;
   top: 4px;
   left: 4px;
+  display: none;
   content: '';
   color: #61768B;
-  position: absolute;
   width: 6px;
   height: 6px;
   background-color: #61768B;

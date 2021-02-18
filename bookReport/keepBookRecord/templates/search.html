@@ -13,33 +13,36 @@
       <input type="text" name="bookName" placeholder="Enter the book's name" />
       <button type="submit" class="search-btn">Search</button>
     </form>
-    <ul class="results">
-      {% for item in items %}
-      <li id="{{forloop.counter}}">
-        <p>{{ forloop.counter }}</p>
-        <img src="{{item.image}}" alt="{{title}}" width="120" /> 
-        <form action="{% url 'addBook' %}" method="POST" class="book-info">
-          {% csrf_token %}
-          <div>
-            <!-- <textarea name="title" id="title" cols="28" rows="2" readonly></textarea> -->
-            <input type="text" name="title" id="title" readonly />
-            <input type="text" name="author" readonly value="{{item.author}}" />
-            <input type="text" name="publisher" readonly value="{{item.publisher}}" />
-            <input type="text" name="pubdate" id="pubdate" readonly value="{{item.pubdate}}" />
-            <input type="text" name="image" readonly value="{{item.image}}" hidden />
-          </div>
-          <button type="submit">Select</button>
-        </form>
-      </li>
-      <script>
-        var title = '{{item.title|safe}}';
-        var newTitle = title.replace(/(<([^>]+)>)/ig,""); 
-        var count = '{{forloop.counter}}';
-        var li = document.getElementById(parseInt(count, 10));
-        li.querySelector('#title').value = newTitle;
-      </script>
-      {% endfor %}
-    </ul>
+    <div class="result-div">
+      <h2 class="result-title">Search Result</h2>
+      <ul class="results">
+        {% for item in items %}
+        <li id="{{forloop.counter}}">
+          <p>{{ forloop.counter }}</p>
+          <img src="{{item.image}}" alt="{{title}}" width="120" /> 
+          <form action="{% url 'addBook' %}" method="POST" class="book-info">
+            {% csrf_token %}
+            <div>
+              <!-- <textarea name="title" id="title" cols="28" rows="2" readonly></textarea> -->
+              <input type="text" name="title" id="title" readonly />
+              <input type="text" name="author" readonly value="{{item.author}}" />
+              <input type="text" name="publisher" readonly value="{{item.publisher}}" />
+              <input type="text" name="pubdate" id="pubdate" readonly value="{{item.pubdate}}" />
+              <input type="text" name="image" readonly value="{{item.image}}" hidden />
+            </div>
+            <button type="submit">Select</button>
+          </form>
+        </li>
+        <script>
+          var title = '{{item.title|safe}}';
+          var newTitle = title.replace(/(<([^>]+)>)/ig,""); 
+          var count = '{{forloop.counter}}';
+          var li = document.getElementById(parseInt(count, 10));
+          li.querySelector('#title').value = newTitle;
+        </script>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </div>
 {% endblock %}

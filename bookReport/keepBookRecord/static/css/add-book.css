@@ -1,0 +1,116 @@
+/* Contents Header */
+
+.contents-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 150px;
+  background-color: #61768B;
+}
+
+.contents-header h1 {
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.contents-header span {
+  color: #fff;
+  text-transform: capitalize;
+}
+
+/* Contents */
+
+.add-book-contents {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  background-color: #F4F4F4;
+}
+
+.add-form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Book Info */
+
+.book-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 600px;
+  background-color: #fff;
+}
+
+.book-image {
+  width: 150px;
+}
+
+/* Record */
+
+.record-container {
+  width: 65%;
+  height: 600px;
+  background-color: #fff;
+}
+
+.quotation-btn {
+  display: block;
+}
+
+.quotation-btn.hide {
+  display: none;
+}
+
+fieldset, label { margin: 0; padding: 0; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { 
+  display: none;
+}
+
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label {
+  color: #FFD700;
+} /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label {
+  color: #FFED85;
+} 

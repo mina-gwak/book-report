@@ -23,7 +23,6 @@
           <form action="{% url 'addBook' %}" method="POST" class="book-info">
             {% csrf_token %}
             <div>
-              <!-- <textarea name="title" id="title" cols="28" rows="2" readonly></textarea> -->
               <input type="text" name="title" id="title" readonly />
               <input type="text" name="author" readonly value="{{item.author}}" />
               <input type="text" name="publisher" readonly value="{{item.publisher}}" />

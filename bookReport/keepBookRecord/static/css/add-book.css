@@ -51,6 +51,33 @@
 
 .book-image {
   width: 150px;
+  box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.book-container h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.radio-div {
+  margin-bottom: 12px;
+}
+
+.date-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  background-color: #f4f4f4;
+  padding: 10px;
+}
+
+.date-div input:first-child,
+.date-div span {
+  margin-bottom: 5px;
 }
 
 /* Record */
@@ -59,14 +86,74 @@
   width: 65%;
   height: 600px;
   background-color: #fff;
+  padding: 50px 80px;
+}
+
+.record-container h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.record-container textarea {
+  font-family: 'Poppins', sans-serif;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  resize: none;
+}
+
+.record-container textarea:active,
+.record-container textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.quotations-list li {
+  display: flex;
+  align-items: flex-start;
+  background-color: #f4f4f4;
+  padding: 5px;
+  margin-bottom: 20px;
+
+}
+
+.quotations-list li textarea {
+  width: 450px;
+  margin-right: 20px;
+}
+
+.quotations-list li :nth-child(2) {
+  width: 50px;
+  text-align: right;
+}
+
+.quotations-list li span {
+  position: relative;
+  top: 1px;
+  margin-right: 20px;
+}
+
+.quotations-list li :nth-child(4) {
+  width: 130px;
 }
 
 .quotation-btn {
   display: block;
+  width: 100%;
+  background-color: #f4f4f4;
+  margin: 0 auto 20px;
 }
 
 .quotation-btn.hide {
   display: none;
+}
+
+.impression-input {
+  background-color: #f4f4f4;
+}
+
+.impression-div textarea {
+  width: 700px;
 }
 
 fieldset, label { margin: 0; padding: 0; }

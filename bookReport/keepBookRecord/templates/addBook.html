@@ -18,7 +18,7 @@
       <input type="text" name="publisher" value="{{info.publisher}}" hidden />
       <input type="text" name="image" value="{{info.image}}" hidden />
       <div class="book-container">
-        <img src="{{info.image}}" alt="책 이미지" class="book-image" />
+        <img src="{{info.image}}" alt="{{info.title}} 이미지" class="book-image" />
         <h2>{{info.title}}</h2>
         <div class="radio-div">
           <input type="radio" id="reading-true" name="reading" value="True" />
@@ -26,9 +26,11 @@
           <input type="radio" id="reading-false" name="reading" value="False" />
           <label for="reading-false">Finished reading</label>
         </div>
-        <input type="date" name="start-date" id="start-date" />
-        <span>~</span>
-        <input type="date" name="end-date" id="end-date" disabled />
+        <div class="date-div">
+          <input type="date" name="start-date" id="start-date" />
+          <span>~</span>
+          <input type="date" name="end-date" id="end-date" disabled />
+        </div>
       </div>
       <div class="record-container">
         <div class="quotations-div">
@@ -39,7 +41,10 @@
         </div>
         <div class="impression-div">
           <h3>Impression</h3>
-          <textarea name="impression" id="impression" cols="30" rows="10"></textarea>
+          <div class="impression-input">
+            <textarea name="impression" id="impression"></textarea>
+            <button type="button" class="impression-btn">Save</button>
+          </div>
         </div>
         <div class="rating-div">
           <h3>Rating</h3>

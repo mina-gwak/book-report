@@ -32,6 +32,7 @@
 }
 
 .add-form {
+  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -108,33 +109,84 @@
   box-shadow: none;
 }
 
+.quotations-div {
+  height: 270px;
+  overflow: scroll;
+  margin-bottom: 20px;
+}
+
 .quotations-list li {
+  position: relative;
   display: flex;
   align-items: flex-start;
   background-color: #f4f4f4;
-  padding: 5px;
-  margin-bottom: 20px;
+  padding: 10px;
+  margin-bottom: 15px;
 
 }
 
 .quotations-list li textarea {
+  position: relative;
+  top: -1px;
   width: 450px;
   margin-right: 20px;
 }
 
-.quotations-list li :nth-child(2) {
+.quotations-list li > :nth-child(2) {
   width: 50px;
+  color: #333;
   text-align: right;
 }
 
 .quotations-list li span {
   position: relative;
-  top: 1px;
+  top: 3px;
+  font-size: 14px;
   margin-right: 20px;
 }
 
 .quotations-list li :nth-child(4) {
   width: 130px;
+}
+
+.quotations-list li div,
+.btn-div {
+  position: absolute;
+  top: 11px;
+  right: 15px;
+}
+
+.quotations-list li div button,
+.impression-btn {
+  color: rgba(0, 0, 0, 0);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.quotations-list li div button:first-child {
+  position: relative;
+  top: -1px;
+  background-image: url('https://user-images.githubusercontent.com/62706988/108728272-c3fd3080-756c-11eb-8895-c78fd4425183.png');
+}
+
+.quotations-list li div button:first-child.first-btn {
+  position: relative;
+  left: 15px;
+}
+
+.quotations-list li div button:first-child.edit {
+  top: 0;
+  height: 17px;
+  background-image: url('https://user-images.githubusercontent.com/62706988/108728281-c65f8a80-756c-11eb-8921-59e321d3ea27.png');
+}
+
+.quotations-list li div button.delete {
+  position: relative;
+  top: 1px;
+  height: 16px;
+  background-image: url('https://user-images.githubusercontent.com/62706988/108733327-c01fdd00-7571-11eb-986e-2ebecaea4481.png');
 }
 
 .quotation-btn {
@@ -148,12 +200,30 @@
   display: none;
 }
 
-.impression-input {
-  background-color: #f4f4f4;
+.impression-div {
+  margin-bottom: 30px;
 }
 
-.impression-div textarea {
-  width: 700px;
+.impression-input {
+  position: relative;
+  background-color: #f4f4f4;
+  padding: 10px;
+}
+
+.impression-input textarea {
+  width: 670px;
+}
+
+.impression-btn {
+  position: relative;
+  background-image: url('https://user-images.githubusercontent.com/62706988/108728272-c3fd3080-756c-11eb-8895-c78fd4425183.png');
+}
+
+.impression-btn.edit {
+  top: 3px;
+  right: 3px;
+  height: 17px;
+  background-image: url('https://user-images.githubusercontent.com/62706988/108728281-c65f8a80-756c-11eb-8921-59e321d3ea27.png');
 }
 
 fieldset, label { margin: 0; padding: 0; }
@@ -201,3 +271,18 @@ fieldset, label { margin: 0; padding: 0; }
 .rating > input:checked ~ label:hover ~ label {
   color: #FFED85;
 } 
+
+.save-btn {
+  position: absolute;
+  bottom: 40px;
+  right: 115px;
+  display: inline-block;
+  color: #fff;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 5px;
+  background-color: #B2C5D8;
+  padding: 10px 20px;
+  margin: 20px 0;
+  cursor: pointer;
+}

@@ -11,7 +11,8 @@
 </div>
 <div class="add-book-contents">
   <div class="contents-wrapper">
-    <form action="" class="add-form">
+    <form action="{% url 'saveRecord' %}" class="add-form" method="POST">
+      {% csrf_token %}
       <input type="text" name="title" value="{{info.title}}" hidden />
       <input type="text" name="author" value="{{info.author}}" hidden />
       <input type="text" name="pubdate" value="{{info.pubdate}}" hidden />
@@ -43,7 +44,9 @@
           <h3>Impression</h3>
           <div class="impression-input">
             <textarea name="impression" id="impression"></textarea>
-            <button type="button" class="impression-btn">Save</button>
+            <div class="btn-div">
+              <button type="button" class="impression-btn">Save</button>
+            </div>
           </div>
         </div>
         <div class="rating-div">
@@ -61,6 +64,7 @@
             <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
         </fieldset>
         </div>
+        <button type="submit" class="save-btn">Save</button>
       </div>
     </form>
   </div>

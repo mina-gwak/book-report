@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import json
 import urllib.request
 
@@ -46,3 +46,6 @@ def addBook(request):
       'image' : image
     }
   return render(request, 'addBook.html', {'info': info})
+
+def saveRecord(request):
+  return redirect('main')

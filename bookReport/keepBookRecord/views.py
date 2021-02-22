@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 import json
 import urllib.request
+from .models import Book, Quotes, Record
 
 # Create your views here.
 def main(request):
@@ -32,6 +33,7 @@ def search(request):
   return render(request, 'search.html')
 
 def addBook(request):
+
   if request.method == 'POST':
     title = request.POST.get('title')
     pubdate = request.POST.get('pubdate')
@@ -45,7 +47,41 @@ def addBook(request):
       'publisher' : publisher,
       'image' : image
     }
+
   return render(request, 'addBook.html', {'info': info})
 
 def saveRecord(request):
+  if request.method == 'POST':
+    book = Book()
+    record = Record()
+
+    book.title = request.POST.get('title')
+    book.author = request.POST.get('author')
+    book.pubdate = request.POST.get('pubdate')
+    book.publisher = request.POST.get('publisher')
+    book.image = request.POST.get('image')
+
+    book.save()
+
+    record.now_reading = request.POST.get('now-reading')
+    record.start_date = request.POST.get('start-date')
+    record.end_date = request.POST.get('end-date')
+    record.impression = request.POST.get('impression')
+    record.rating = request.POST.get('rating')
+    record.book = book
+    record.user = request.user
+
+    record.save()
+
+    for i in range (100):
+      if request.POST.get('q-content-'+ str(i+1)):
+        quote = Quotes()
+        quote.content = request.POST.get('q-content-' + str(i+1))
+        quote.page = request.POST.get('q-page-' + str(i+1))
+        quote.date = request.POST.get('q-date-' + str(i+1))
+        quote.record = record
+        quote.save()
+      else:
+        break
+
   return redirect('main')

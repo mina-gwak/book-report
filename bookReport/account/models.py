@@ -27,8 +27,8 @@ class UserManager(BaseUserManager):
     return user
 
 class User(AbstractBaseUser):
-  user_id = models.CharField(max_length=50, unique=True)
-  nickname = models.CharField(max_length=50)
+  user_id = models.CharField(max_length=50, primary_key=True)
+  nickname = models.CharField(max_length=50, unique=True)
   is_active = models.BooleanField(default=True)
   is_admin = models.BooleanField(default=False)
 

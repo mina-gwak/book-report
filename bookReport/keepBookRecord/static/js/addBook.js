@@ -97,9 +97,11 @@ function addQuotation() {
   content.name = 'q-content-' + (countLi + 1);
   content.id = 'q-content-' + (countLi + 1);
   page.type = 'text';
+  page.name = 'q-page-' + (countLi + 1);
   page.id = 'q-page-' + (countLi + 1);
   span.textContent = 'P';
   date.type = 'date';
+  date.name = 'q-date-' + (countLi + 1);
   date.id = 'q-date-' + (countLi + 1);
   setDate(date);
   date.readOnly = true;

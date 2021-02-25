@@ -15,6 +15,14 @@
 <div class="contents-book">
   <div class="contents-wrapper">
     <a href="{% url 'search' %}" class="add-book-btn"><span>+ Add Book</span></a>
+    <div class="book-list">
+      {% for book in books %}
+        <a href="{% url 'myRecord' book.id %}" class="book-item">
+          <img src="{{book.image}}" alt="{{book.title}} 표지" />
+          <h2>{{book.title}}</h2>
+        </a>
+      {% endfor %}  
+    </div>
   </div>
 </div>
 {% endblock %}

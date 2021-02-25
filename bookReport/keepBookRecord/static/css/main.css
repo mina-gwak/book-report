@@ -56,6 +56,7 @@
 }
 
 .contents-book .contents-wrapper {
+  height: 500px;
   margin: 20px auto;
 }
 
@@ -75,4 +76,43 @@ a.add-book-btn {
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.book-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+}
+
+.book-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 300px;
+  box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  margin-right: 70px;
+}
+
+.book-item:last-child {
+  margin-right: 0px;
+}
+
+.book-item img {
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+.book-item h2 {
+  width: 70%;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

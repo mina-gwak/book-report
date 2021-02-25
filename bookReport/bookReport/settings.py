@@ -138,3 +138,5 @@ LOGIN_REDIRECT_URL = 'main/'
 LOGOUT_REDIRECT_URL = 'main/'
 
 AUTH_USER_MODEL = 'account.User'
+
+DATE_INPUT_FORMATS = ['%Y-%m-%d']

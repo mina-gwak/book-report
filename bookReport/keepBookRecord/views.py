@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 import json
 import urllib.request
 from .models import Book, Quotes, Record
 
 # Create your views here.
 def main(request):
-  return render(request, 'main.html')
+  books = Book.objects.filter(user=request.user)
+  return render(request, 'main.html', {'books': books})
 
 def search(request):
   if request.method == 'POST':
@@ -84,4 +85,46 @@ def saveRecord(request):
       else:
         break
 
+  return redirect('main')
+
+def myRecord(request, book_id):
+  book = Book.objects.filter(id=book_id)
+  my_record = Record.objects.filter(user=request.user)
+  select_record = my_record.filter(book=book_id)
+  quotes = Quotes.objects.filter(record=select_record[0].id)
+  return render(request, 'detail.html', {'book':book[0], 'record':select_record[0], 'quotes':quotes})
+
+def updateRecord(request):
+  book = Book.objects.filter(title=request.POST.get('title'))
+  my_record = Record.objects.filter(user=request.user)
+  select_record = my_record.filter(book=book[0].id)[0]
+  quotes = Quotes.objects.filter(record=select_record.id).delete()
+  
+  if request.method == 'POST':
+    select_record.now_reading = request.POST.get('now-reading')
+    select_record.start_date = request.POST.get('start-date')
+    select_record.end_date = request.POST.get('end-date')
+    select_record.impression = request.POST.get('impression')
+    select_record.rating = request.POST.get('rating')
+
+    select_record.save()
+
+    for i in range (100):
+      if request.POST.get('q-content-'+ str(i+1)):
+        quote = Quotes()
+        quote.content = request.POST.get('q-content-' + str(i+1))
+        quote.page = request.POST.get('q-page-' + str(i+1))
+        quote.date = request.POST.get('q-date-' + str(i+1))
+        quote.record = select_record
+        quote.save()
+      else:
+        break
+
+    return redirect('main')
+
+  else:
+    return render(request, 'detail.html', {'book':book[0], 'record':select_record[0], 'quotes':quotes})
+
+def delRecord(request, book_id):
+  book = Book.objects.filter(id=book_id).delete()
   return redirect('main')

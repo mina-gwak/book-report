@@ -13,6 +13,7 @@ function editImpression(e) {
   e.target.textContent = 'Save';
   e.target.removeEventListener('click', editImpression);
   e.target.addEventListener('click', saveImpression);
+  e.target.parentNode.parentNode.querySelector('textarea').focus();
 }
 
 function saveImpression(e) {
@@ -64,6 +65,7 @@ function editQuotation(e) {
   e.target.removeEventListener('click', editQuotation);
   e.target.addEventListener('click', saveQuotation);
   quotationBtn.classList.add('hide');
+  e.target.parentNode.parentNode.querySelector('textarea').focus();
 }
 
 function saveQuotation(e) {
@@ -136,15 +138,23 @@ function setDate(date) {
 }
 
 function init() {
-  setDefaultRadio();
-  setDate(startDate);
   bookContainer.addEventListener('click', function(e) {
     let option = e.target;
     if (option.tagName !== 'INPUT') return;
     checkRadio(option)
   });
   quotationBtn.addEventListener('click', addQuotation);
-  impressionBtn.addEventListener('click', saveImpression);
+  if (document.querySelector('.first-btn')) {
+    const btn = document.querySelectorAll('.first-btn');
+    btn.forEach((item) => {
+      item.addEventListener('click', editQuotation);
+    })
+    impressionBtn.addEventListener('click', editImpression)
+  } else {
+    setDate(startDate);
+    setDefaultRadio();
+    impressionBtn.addEventListener('click', saveImpression);
+  }
 }
 
 init();

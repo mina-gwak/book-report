@@ -23,7 +23,7 @@
 
 /* Contents */
 
-.add-book-contents {
+.record-contents {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -31,7 +31,7 @@
   background-color: #F4F4F4;
 }
 
-.add-form {
+.record-form {
   position: relative;
   display: flex;
   justify-content: space-around;
@@ -272,7 +272,8 @@ fieldset, label { margin: 0; padding: 0; }
   color: #FFED85;
 } 
 
-.save-btn {
+.save-btn,
+.btn {
   position: absolute;
   bottom: 40px;
   right: 115px;
@@ -285,4 +286,17 @@ fieldset, label { margin: 0; padding: 0; }
   padding: 10px 20px;
   margin: 20px 0;
   cursor: pointer;
+}
+
+.btn.update {
+  right: 215px;
+}
+
+.btn.del {
+  font-family: 'Poppins', sans-serif;
+  width: 90px;
+  height: 40px;
+  font-size: 13.333px;
+  line-height: 1.5;
+  text-align: center;
 }

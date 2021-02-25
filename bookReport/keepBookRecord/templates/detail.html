@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Book Report - Add book{% endblock %}
+{% block title %}Book Report - My record{% endblock %}
 {% block link %}{% static 'css/record.css' %}{% endblock %}
 
 {% block content %}
@@ -11,41 +11,53 @@
 </div>
 <div class="record-contents">
   <div class="contents-wrapper">
-    <form action="{% url 'saveRecord' %}" class="record-form" method="POST">
+    <form action="{% url 'updateRecord' %}" class="record-form" method="POST">
       {% csrf_token %}
-      <input type="text" name="title" value="{{info.title}}" hidden />
-      <input type="text" name="author" value="{{info.author}}" hidden />
-      <input type="text" name="pubdate" value="{{info.pubdate}}" hidden />
-      <input type="text" name="publisher" value="{{info.publisher}}" hidden />
-      <input type="text" name="image" value="{{info.image}}" hidden />
+      <input type="text" name="title" value="{{book.title}}" hidden />
+      <input type="text" name="author" value="{{book.author}}" hidden />
+      <input type="text" name="pubdate" value="{{book.pubdate}}" hidden />
+      <input type="text" name="publisher" value="{{book.publisher}}" hidden />
+      <input type="text" name="image" value="{{book.image}}" hidden />
       <div class="book-container">
-        <img src="{{info.image}}" alt="{{info.title}} 이미지" class="book-image" />
-        <h2>{{info.title}}</h2>
+        <img src="{{book.image}}" alt="{{book.title}} 이미지" class="book-image" />
+          <h2>{{book.title}}</h2>
         <div class="radio-div">
-          <input type="radio" id="reading-true" name="now-reading" value="true" />
+          <input type="radio" id="reading-true" name="now-reading" value="true" class="reading" />
           <label for="reading-true">Reading</label>
-          <input type="radio" id="reading-false" name="now-reading" value="false" />
+          <input type="radio" id="reading-false" name="now-reading" value="false" class="reading" />
           <label for="reading-false">Finished reading</label>
         </div>
         <div class="date-div">
-          <input type="date" name="start-date" id="start-date" />
+          <input type="date" name="start-date" id="start-date" value="{{record.start_date|date:'Y-m-d'}}" />
           <span>~</span>
-          <input type="date" name="end-date" id="end-date" disabled />
+          <input type="date" name="end-date" id="end-date" value="{{record.end_date|date:'Y-m-d'}}" disabled />
         </div>
       </div>
       <div class="record-container">
         <div class="quotations-div">
           <h3>Quoations</h3>
           <ul class="quotations-list">
+            {% for quote in quotes %}
+              <li id="{{forloop.counter}}">
+                <textarea name="q-content-{{forloop.counter}}" readonly>{{quote.content}}</textarea>
+                <input type="text" name="q-page-{{forloop.counter}}" value="{{quote.page}}" readonly />
+                <span>P</span>
+                <input type="date" name="q-date-{{forloop.counter}}" value="{{quote.date|date:'Y-m-d'}}" readonly />
+                <div>
+                  <button type="button" class="first-btn edit">Edit</button>
+                  <button type="button" class="delete">Delete</button>
+                </div>
+              </li>
+            {% endfor %}
           </ul>
           <button type="button" class="quotation-btn">+ Add Quotation</button>
         </div>
         <div class="impression-div">
           <h3>Impression</h3>
           <div class="impression-input">
-            <textarea name="impression" id="impression"></textarea>
+            <textarea name="impression" id="impression" readonly>{{record.impression}}</textarea>
             <div class="btn-div">
-              <button type="button" class="impression-btn">Save</button>
+              <button type="button" class="impression-btn edit">Edit</button>
             </div>
           </div>
         </div>
@@ -64,10 +76,28 @@
             <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
         </fieldset>
         </div>
-        <button type="submit" class="save-btn">Save</button>
+        <button type="submit" class="btn update">Update</button>
+        <a href="{% url 'delRecord' book.id %}" class="btn del">Delete</a>
       </div>
     </form>
   </div>
 </div>
+<script>
+  const ratingVal = '{{record.rating}}';
+  const ratingDiv = document.querySelector('.rating');
+  for (let i = 0; i < ratingDiv.children.length; i++) {
+    if (ratingDiv.children[i].value === ratingVal){
+      ratingDiv.children[i].checked = true;
+    }
+  }
+  const nowReading = '{{record.now_reading}}'
+  const radios = document.querySelectorAll('.reading');
+  radios.forEach((item) => {
+    if (item.value === nowReading){
+      console.log(item);
+      item.checked = true;
+    }
+  })
+</script>
 {% endblock %}
 {% block script %}{% static 'js/record.js' %}{% endblock %}
